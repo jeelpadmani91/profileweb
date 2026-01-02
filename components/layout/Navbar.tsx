@@ -9,6 +9,7 @@ import { NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [activeLang, setActiveLang] = useState("EN");
     const pathname = usePathname();
 
     useEffect(() => {
@@ -27,29 +28,29 @@ export default function Navbar() {
     return (
         <header
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-                    ? "glass py-3"
-                    : "bg-transparent py-5"
+                ? "glass py-3"
+                : "bg-transparent py-6" // Increased vertical padding
                 }`}
         >
             <nav className="container flex items-center justify-between">
                 {/* Logo */}
                 <Link
                     href="/"
-                    className="text-xl font-bold tracking-tight hover:opacity-80 transition-opacity"
+                    className="text-2xl font-bold tracking-tight hover:opacity-80 transition-opacity font-serif" // Increased size, serif font
                     aria-label={`${SITE_CONFIG.name} - Home`}
                 >
-                    <span className="text-gradient">{SITE_CONFIG.name}</span>
+                    <span className="text-gradient">VOX MEDIA</span> {/* All caps for Rolex style */}
                 </Link>
 
                 {/* Desktop Navigation */}
-                <ul className="hidden md:flex items-center gap-8">
+                <ul className="hidden md:flex items-center gap-10"> {/* Increased gap */}
                     {NAV_LINKS.map((link) => (
                         <li key={link.href}>
                             <Link
                                 href={link.href}
-                                className={`text-sm font-medium transition-colors hover:text-[var(--color-accent)] ${pathname === link.href
-                                        ? "text-[var(--color-accent)]"
-                                        : "text-[var(--color-text-secondary)]"
+                                className={`text-xs font-semibold tracking-widest uppercase transition-colors hover:text-[var(--color-accent)] ${pathname === link.href
+                                    ? "text-[var(--color-accent)]"
+                                    : "text-[var(--color-text-secondary)]"
                                     }`}
                             >
                                 {link.label}
@@ -58,13 +59,16 @@ export default function Navbar() {
                     ))}
                 </ul>
 
-                {/* CTA Button - Desktop */}
-                <Link
-                    href="/contact"
-                    className="hidden md:inline-flex items-center px-5 py-2.5 text-sm font-medium bg-[var(--color-accent)] text-[var(--color-bg-primary)] rounded-lg hover:bg-[var(--color-accent-hover)] transition-colors"
-                >
-                    Get Started
-                </Link>
+                <div className="hidden md:flex items-center gap-8">
+
+                    {/* CTA Button - Desktop */}
+                    <Link
+                        href="/contact"
+                        className="inline-flex items-center px-6 py-3 text-xs font-bold tracking-widest uppercase bg-[var(--color-accent)] text-[var(--color-bg-primary)] rounded-sm hover:bg-[var(--color-accent-hover)] transition-colors"
+                    >
+                        Get Started
+                    </Link>
+                </div>
 
                 {/* Mobile Menu Button */}
                 <button
@@ -114,8 +118,8 @@ export default function Navbar() {
                                     <Link
                                         href={link.href}
                                         className={`block py-2 text-base font-medium transition-colors ${pathname === link.href
-                                                ? "text-[var(--color-accent)]"
-                                                : "text-[var(--color-text-secondary)]"
+                                            ? "text-[var(--color-accent)]"
+                                            : "text-[var(--color-text-secondary)]"
                                             }`}
                                     >
                                         {link.label}

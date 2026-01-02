@@ -20,37 +20,23 @@ export default function ServiceCard({
 }: ServiceCardProps) {
     const cardContent = (
         <>
-            <div className="text-4xl mb-4">{icon}</div>
-            <h3 className="text-xl font-semibold mb-1">{title}</h3>
+            <div className="text-3xl mb-6 text-[var(--color-accent)] opacity-80 group-hover:scale-110 transition-transform duration-500">{icon}</div>
+            <h3 className="text-lg font-serif font-bold mb-2 tracking-wide group-hover:text-[var(--color-accent)] transition-colors duration-300">{title}</h3>
             {subtitle && (
-                <p className="text-sm text-[var(--color-accent)] mb-3">{subtitle}</p>
+                <p className="text-xs font-medium tracking-widest uppercase text-[var(--color-text-secondary)] mb-4">{subtitle}</p>
             )}
-            <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed">
+            <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed font-light opacity-80 group-hover:opacity-100 transition-opacity">
                 {description}
             </p>
+            {/* Minimal Link Indicator */}
             {href && (
-                <div className="mt-4 flex items-center gap-2 text-sm font-medium text-[var(--color-accent)]">
-                    Learn more
-                    <svg
-                        className="w-4 h-4 transition-transform group-hover:translate-x-1"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
-                    </svg>
-                </div>
+                <div className="mt-6 w-8 h-[1px] bg-[var(--color-accent)] group-hover:w-16 transition-all duration-300" />
             )}
         </>
     );
 
     const cardStyles =
-        "group block p-6 rounded-xl bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:border-[var(--color-accent)] transition-all duration-300 h-full";
+        "group block p-8 rounded-sm bg-[var(--color-bg-secondary)] hover:bg-[var(--color-bg-tertiary)] transition-colors duration-500 h-full border-t border-[var(--color-border)] hover:border-[var(--color-accent)]";
 
     if (href) {
         return (
